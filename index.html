@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple IDE</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-okaidia.min.css" rel="stylesheet" />
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body, html {
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #eef1f5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        #container {
+            display: flex;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        header {
+            background: #282c34;
+            color: #61dafb;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        button {
+            background: #61dafb;
+            color: #282c34;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #4fa1c7;
+        }
+
+        #sidebar {
+            width: 200px;
+            background: #fff;
+            overflow-y: auto;
+            resize: horizontal;
+            overflow: auto;
+            min-width: 150px;
+            max-width: 400px;
+        }
+
+        #divider {
+            background: #ccc;
+            width: 5px;
+            cursor: ew-resize;
+        }
+
+        #fileExplorer h3 {
+            background: #ddd;
+            padding: 10px;
+            font-weight: bold;
+        }
+
+        #fileList {
+            list-style: none;
+            padding: 0;
+        }
+
+        #fileList li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            cursor: pointer;
+        }
+
+        #fileList li:hover {
+            background-color: #f4f4f4;
+        }
+
+        main {
+            flex-grow: 1;
+            padding: 10px;
+            background: #fff;
+            overflow: hidden;
+        }
+
+        #codeEditor {
+            width: 100%;
+            height: calc(100vh - 92px);
+            border: none;
+            padding: 10px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 16px;
+            line-height: 1.5;
+            resize: none;
+            background: #f9f9f9;
+            color: #333;
+        }
+
+        #statusBar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #282c34;
+            color: #61dafb;
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <header>
+            <button id="runServer">Run Local Server</button>
+            <button id="stopServer">Stop Server</button>
+            <button id="saveFile">Save File</button>
+        </header>
+        <aside id="sidebar">
+            <div id="fileExplorer">
+                <h3>Files</h3>
+                <ul id="fileList">
+                    <!-- Files will be dynamically listed here -->
+                </ul>
+            </div>
+        </aside>
+        <div id="divider"></div>
+        <main>
+            <textarea id="codeEditor" placeholder="Start typing your code here..." class="language-js"></textarea>
+            <div id="statusBar">Ready</div>
+        </main>
+   
